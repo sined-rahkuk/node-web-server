@@ -15,7 +15,7 @@ app.use((req, resp, next) => {
     let now = new Date().toString();
     let log = `${now}: ${req.method} ${req.url}\n`;
     console.log(log);
-    fs.appendFile('./logging/server.log', log, (err) => {
+    fs.appendFile(__dirname + '/logging/server.log', log, (err) => {
         console.error(err);
     })
 
@@ -29,14 +29,14 @@ app.use(express.static(__dirname + '/public'));
 
 app.get('/', (req, resp) => {
     // resp.send('<hr><h1>hello express!</h1><hr>');
-    resp.render('home.hbs', {
+    resp.render(__dirname + '/views/home.hbs', {
         pageTitle: 'Home page',
         content: 'welcome to my brand new page',
         owner: 'Denys Kukhar'
     })
 });
 app.get('/about', (req, resp) => {
-    resp.render('about.hbs', {
+    resp.render(__dirname + '/views/about.hbs', {
         pageTitle: 'About page',
         owner: 'Denys Kukhar'
     });
