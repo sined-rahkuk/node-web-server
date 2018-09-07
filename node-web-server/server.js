@@ -2,6 +2,8 @@ const express = require('express');
 const fs = require('fs');
 const hbs = require('hbs');
 
+const PORT = process.env.PORT || 3000;
+
 hbs.registerPartials(__dirname + '/views/partials');
 hbs.registerHelper('getCurrentYear', () => {
     return new Date().getFullYear();
@@ -44,4 +46,4 @@ app.get('/bad', (req, resp) => {
         errorMessage: "something went wrong or requested page does not exist!"
     });
 });
-app.listen(3000, () => console.log('server is up on port 3000'));
+app.listen(PORT, () => console.log(`server is up on port: ${PORT}`));
